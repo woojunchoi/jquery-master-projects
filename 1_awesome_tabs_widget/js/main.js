@@ -1,14 +1,11 @@
 $(document).ready(function() {
+    $('.headers .header').click(function(){
+        $('.header').removeClass('active')
+        $(this).addClass('active')
 
-    $('.tab_header .item').on("click",function(){
-        var number = $(this).data("option");
+       var selected = $(this).data('type');
+        $('.tab').hide()
+        $('.tab[data-type="'+selected+'"]').show()
 
-        $('.tab_header .item').removeClass('active');
-
-        $(this).addClass('active');
-
-        $('.tab_container .container_item').hide();
-        $('div[data-item="'+ number +'"]').show();
-    });
-
-});
+    })
+})
