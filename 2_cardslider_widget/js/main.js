@@ -1,41 +1,26 @@
-$(document).ready(function() {
-
-    ////////////////////////////////////////////////
-    ///////  CARD SLIDER
-    ///////////////////////////////////////////////
-    var itemsLenght = $('.cards_container .item').length;
-    var current = 1;
-
-    $('.total_slides').text(itemsLenght);
-
-    $('.cardSlider .btn_prev').on("click",function(){
-        if(current > 1){
-            current = current - 1;
-            showSlide(current);
-        }else{
-            current = itemsLenght;
-            showSlide(current);
+$(document).ready(function(){
+    var slidenum = $('.slide').length
+    $('.btn_previous').click(function(){
+        var current = $('.slide.active').data('type')
+        var previous = current-1;
+        var next = current+1;
+        $('.slide').removeClass('active')
+        if(current === 1) {
+            $('.slide[data-type="'+slidenum+'"]').addClass('active')
         }
-    });
-
-    $('.cardSlider .btn_next').on("click",function(){
-
-        if(current !== itemsLenght){
-            current = current + 1;
-            showSlide(current);
-        }else{
-            current = 1;
-            showSlide(current);
+        else {
+            $('.slide[data-type="'+previous+'"]').addClass('active')
         }
-    });
-
-
-    function showSlide(slideNumber){
-     $('.cards_container .item').removeClass('active');
-     $('div[data-id="'+ slideNumber +'"]').addClass('active');
-
-     $('.current_slide').text(slideNumber)
-
-    }
-
-});
+    })
+    $('.btn_next').click(function(){
+        current = $('.slide.active').data('type')
+        next = current+1
+        $('.slide').removeClass('active')
+        if(current === slidenum) {
+            $('.slide[data-type=1]').addClass('active')
+        }
+        else {
+            $('.slide[data-type="'+next+'"]').addClass('active')
+        }
+    })
+})
